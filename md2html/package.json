@@ -1,5 +1,5 @@
 {
-  "name": "lift-tools - md2html",
+  "name": "lift_tools_md2html",
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
