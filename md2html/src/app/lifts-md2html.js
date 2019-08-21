@@ -8,11 +8,25 @@
 
 //integrating some external interactive components, such as an MS Forms quiz.
 
+export default class LIFTS_MD2html {
+  constructor() {
+  //  APP.directory = window.location.pathname;
+    APP.running = false;
 
-import APP_Properties from './app-properties.js';
+  }
 
-import LIFTS_MD2html from './app/lifts-md2html.js';
+  init() {
 
-window.lifts_md2html = new LIFTS_MD2html();
+  //  console.log('app run INIT');
 
-lifts_md2html.init();
+    this.test();
+  }
+
+
+  test() {
+
+
+
+  }
+
+}
