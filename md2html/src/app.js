@@ -9,10 +9,6 @@
 //integrating some external interactive components, such as an MS Forms quiz.
 
 
-import APP_Properties from './app-properties.js';
+import APP_run from './app-run.js';
 
-import LIFTS_MD2html from './app/lifts-md2html.js';
-
-window.lifts_md2html = new LIFTS_MD2html();
-
-lifts_md2html.init();
+window.app = new APP_run();

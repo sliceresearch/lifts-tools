@@ -12,7 +12,7 @@ const production = !process.env.ROLLUP_WATCH;
 export default {
 		input: 'src/app.js',
 		output: {
-			file: 'run/lib/js/md2html.js',
+			file: 'run/lib/js/lifts-tools.js',
 			format: 'iife' // immediately-invoked function expression — suitable for <script> tags
 	},
 

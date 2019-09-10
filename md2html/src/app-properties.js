@@ -3,35 +3,44 @@ window.APP={}
 
 export default class APP_Properties {
   constructor() {
-    /////////////////////////////////////////// app config
-    APP = {
 
-      ///////////////////////////////////////////////////////////basic
-      language: 'en', //cn
+    APP = {};
 
-      ////////////////////////////////////////////////// production settings
-      protocolProduction: window.location.protocol,
-      hostProduction: window.location.hostname,
-      portProduction: window.location.port,
+    //////////////////////////////////////////// PRESET config
 
-      objDirProduction: 'data/objects/',
-      markerDirProduction: 'data/marker/',
+    const PRESETS = {
+    /////////////////////////////// developer settings
+      dev: {
 
-      ////////////////////////////////////////////////// default development settings
-      protocolDevelopment: window.location.protocol,
-      hostDevelopment: window.location.hostname,
-      portDevelopment: window.location.port,
+        protocol: window.location.protocol,
+        host: window.location.hostname,
+        port: window.location.port,
 
-      objDirDevelopment: 'assets/model/',
-      markerDirDevelopment: 'assets/marker/',
+        directory: {
+          media: 'media'
+        }
+
+      },
+    //////////////////////////////// production settings
+      production: {
+
+      }
 
     };
 
+    APP.preset = PRESETS['dev'];
+
+    /////////////////////////////////////////// APP properties
     APP.properties = {
 
     };
 
-    APP.hostname = window.document.hostname;
+    /////////////////////////////////////////// APP settings
+    APP.directory = {
+      media: APP.preset.directory.media
+    }
+
+    APP.host = APP.preset.host;
 
   }
 }
