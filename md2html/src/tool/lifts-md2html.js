@@ -14,11 +14,11 @@ export default class LIFTS_MD2html {
 
     this.dir_media = APP.directory.media;
 
+    console.log('LIFTS-md2html (init)  ' + 'v:' + APP.properties.version + '  dir:'+this.dir_media)
   }
 
   /////  init
   init() {
-    console.log('init');
     this.init_converter();
 
     this.fileio = new UTIL_fileio();
@@ -34,24 +34,23 @@ export default class LIFTS_MD2html {
 //////////////////////////////////unit tests
   test() {
 
-    console.log('test');
+    console.log('LIFTS-md2html (tests)  ' + 'v:' + APP.properties.version + '  dir:'+this.dir_media)
 
-    this.testmd();
+    this.test_md2html();
 
   }
 
-  testmd() {
-
+  test_md2html() {
     var test = this.mdfile2html('ict221','ICT221_Week01_Java_Intro')
-    console.log(test);
-
+    console.log('LIFTS-md2html (test-md2html)  ' + test)
   }
 
   ////////////////////////////////////md2html
 
-  mdfile2html(filename) {
-    let mdtext = this.get_media_file(filename);
-    return this.md2html(mdtext);
+  mdfile2html(directory,filename) {
+    let mdtext = this.get_media_file_md(directory,filename);
+    console.log(mdtext)
+  //  return this.md2html(mdtext);
   }
 
   md2html(mdtext) {
@@ -60,9 +59,9 @@ export default class LIFTS_MD2html {
 
 //////////////////////////////////////////////
 
-  get_media_file(directory,filename) {
+  get_media_file_md(directory,filename) {
 
-    let fn = this.dir_media + '/' + filename;
+    let fn = this.dir_media + '/' + directory + '/' + filename + ".md";
     return this.fileio.get(fn);
   }
 

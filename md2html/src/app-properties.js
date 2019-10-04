@@ -32,15 +32,16 @@ export default class APP_Properties {
 
     /////////////////////////////////////////// APP properties
     APP.properties = {
-
+      version:'0.0.1'
     };
 
     /////////////////////////////////////////// APP settings
-    APP.directory = {
-      media: APP.preset.directory.media
-    }
 
-    APP.host = APP.preset.host;
+    APP.host =  APP.preset.protocol + '//' + APP.preset.host + ':' + APP.preset.port;
+
+    APP.directory = {
+      media: APP.host + "/" + APP.preset.directory.media
+    }
 
   }
 }

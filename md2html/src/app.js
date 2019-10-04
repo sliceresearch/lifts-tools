@@ -8,6 +8,7 @@
 
 //integrating some external interactive components, such as an MS Forms quiz.
 
+// import * as fs from 'fs';
 
 import APP_run from './app-run.js';
 
