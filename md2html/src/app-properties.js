@@ -43,5 +43,7 @@ export default class APP_Properties {
       media: APP.host + "/" + APP.preset.directory.media
     }
 
+    APP.running = false;
+
   }
 }

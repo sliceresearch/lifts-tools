@@ -16,7 +16,6 @@ export default class APP_run {
 
     this.properties = new APP_Properties();
 
-    APP.running = false;
 
     console.log(APP)
 
@@ -24,18 +23,38 @@ export default class APP_run {
 
   /////  init
   init() {
-
     this.md2html = new LIFTS_md2html();
     this.md2html.init();
+
+    this.run();
+
+    APP.running = true;
+
+  }
+
+  run() {
+    setInterval(function() {
+    step();
+    }, 1000 / 29.97);
+  }
+
+  cycle() {
+
+      this.md2html.cycle();
 
   }
 
 
 //////////////////////////////////unit tests
   test() {
-
     this.md2html.test();
   }
 
 
+}
+
+function step() {
+  if (APP.running) {
+    window.app.cycle();
+  }
 }

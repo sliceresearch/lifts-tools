@@ -9,9 +9,10 @@ export default class UTIL_FileURLLoader {
   init(u) {
     this.URL = u;
     this.URLp = '';
+    this.URLtext = "";
     this.URLready = false;
     this.URLMediaready = false;
-    this.URLTimeout = 4000;
+    this.URLTimeout = 1000;
     this.URLTimeoutCount = 0;
     this.URLTimer = Date.now();
   }
@@ -156,6 +157,7 @@ export default class UTIL_FileURLLoader {
   }
 
   fileExistsCall(url, index, callback) {
+    var _me=this;
     if (url == '') {
       callback(false, index);
     } else {
@@ -173,7 +175,11 @@ export default class UTIL_FileURLLoader {
               http.status
           );
           if (http.status == 200 || http.status == 206) {
+            _me.URLtext=http.responseText;
+           console.log('autil: (ok):' );
             callback(true, index);
+
+
           } else {
             callback(false, index);
           }

@@ -1,28 +1,34 @@
 
-
 import UTIL_FileURLLoader from './util-FileURLLoader.js';
 
 export default class UTIL_fileio {
-  constructor() {
-
+  constructor(parent) {
+    this.callback=parent;
   }
 
-  get(filename) {
+  read(filename) {
     console.log('fileio (get) ',filename)
-    //  this.load(filename);
-
     this.urlLoader = new UTIL_FileURLLoader(this,filename);
-
   }
 
-  check() {
+  cycle() {
 
     this.urlLoader.checkURLReady();
 
   }
 
 
+  ////////////////////////////////////////////URL loader callbacks
+  setURLMedia() {
+  //  console.log('seturl',this.urlLoader.URLtext);
+    this.callback.call('fileio_text',this.urlLoader.URLtext);
+  }
 
+  checkURLMedia() {
+      return true;
+  }
+
+  startURLMedia() {}
 
 }
 

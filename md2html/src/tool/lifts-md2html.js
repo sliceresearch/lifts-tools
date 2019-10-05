@@ -14,30 +14,37 @@ export default class LIFTS_MD2html {
 
     this.dir_media = APP.directory.media;
 
-    console.log('LIFTS-md2html (init)  ' + 'v:' + APP.properties.version + '  dir:'+this.dir_media)
+
   }
 
   /////  init
   init() {
     this.init_converter();
 
-    this.fileio = new UTIL_fileio();
+    this.fileio = new UTIL_fileio(this);
+
+    console.log('LIFTS-md2html (init)  ' + 'v:' + APP.properties.version + '  dir:'+this.dir_media)
 
   }
 
+  cycle() {
+    this.fileio.cycle();
+  }
+
+  call(op,arg) {
+        if (op=='fileio_text')
+          this.media_file_set_text(arg);
+  }
+//////////////////////////////////showdown
   ///  global settings for showdown
   init_converter() {
       this.converter2HTML = new showdown.Converter();
-
   }
 
 //////////////////////////////////unit tests
   test() {
-
     console.log('LIFTS-md2html (tests)  ' + 'v:' + APP.properties.version + '  dir:'+this.dir_media)
-
     this.test_md2html();
-
   }
 
   test_md2html() {
@@ -48,28 +55,27 @@ export default class LIFTS_MD2html {
   ////////////////////////////////////md2html
 
   mdfile2html(directory,filename) {
-    let mdtext = this.get_media_file_md(directory,filename);
-    console.log(mdtext)
-  //  return this.md2html(mdtext);
+    var fn = this.media_file_name_get(directory,filename);
+    this.media_file_read(fn);
   }
 
   md2html(mdtext) {
     return this.converter2HTML.makeHtml(mdtext);
   }
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////media file
+  media_file_read(filename) {
+    this.fileio.read(filename);
+  }
 
-  get_media_file_md(directory,filename) {
+  media_file_set_text(text) {
+      console.log('LIFTS-md2html (text)  ' + text)
+  }
 
+  media_file_name_get(directory,filename) {
     let fn = this.dir_media + '/' + directory + '/' + filename + ".md";
-    return this.fileio.get(fn);
+    return fn;
   }
 
-
-  fileloader() {
-
-
-
-  }
 
 }
