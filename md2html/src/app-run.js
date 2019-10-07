@@ -44,14 +44,55 @@ export default class APP_run {
 
   }
 
+//////////////////////////////////convert
+
+  setPresentation(html) {
+
+    let html_target = document.getElementById('lifts-html');
+    //
+    var makeIframe = document.createElement("iframe");
+    makeIframe.setAttribute("src", "reveal.html");
+    makeIframe.setAttribute("scrolling", "no");
+    makeIframe.style.border = "none";
+//    makeIframe.style.left =  "0px";
+  //  makeIframe.style.top = "-70px";
+    makeIframe.style.position = "absolute";
+
+    console.log(makeIframe)
+
+    html_target.appendChild(makeIframe);
+
+  //  html_target.innerHTML = makeIframe.innerHTML
+  }
+
 
 //////////////////////////////////unit tests
   test() {
     this.md2html.test();
+
   }
+
+  test_run() {
+
+      console.log('LIFTS-tools (test-run)  ' + 'v:' + APP.properties.version)
+        this.setPresentation();
+
+  }
+
+//  target = document.getElementById('targetDiv'),
+//    converter = new showdown.Converter(),
+//    html = converter.makeHtml(text);
+
+//  target.innerHTML = html;
+
 
 
 }
+
+function test_run() {
+  window.app.test_run();
+}
+
 
 function step() {
   if (APP.running) {

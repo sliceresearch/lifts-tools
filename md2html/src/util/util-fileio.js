@@ -12,7 +12,6 @@ export default class UTIL_fileio {
   }
 
   cycle() {
-
     this.urlLoader.checkURLReady();
 
   }

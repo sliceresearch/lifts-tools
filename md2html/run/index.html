@@ -6,13 +6,21 @@
       <title>lifts_tools</title>
          <meta charset="utf-8">
 	       <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-         <script src="lib/vendor/showdown.min.js"></script>
-         <script src="lib/js/lifts-tools.js" type="text/javascript"></script>
+         <script src="lib/js/showdown.min.js"></script>
+         <script src="js/lifts-tools.js" type="text/javascript"></script>
      </head>
 
      <body>
           <script>app.init()</script>
-          <script>app.test()</script>
+         <script>app.test()</script>
+
+          <div id="lifts-markdown"></div>
+          <button id="runBtn" onClick="app.test_run()">Convert</button>
+          <div id="lifts-html">
+
+            <!--  <iframe src="lib/html/reveal.html" name="reveal" id="reveal" frameborder="0" marginwidth="0" marginheight="0" scrolling="auto" onload="" allowtransparency="false"></iframe>
+ -->
+          </div>
      </body>
 
  </html>

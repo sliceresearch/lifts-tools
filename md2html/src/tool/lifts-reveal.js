@@ -1,4 +1,4 @@
-//// lift-tools - md2html
+//// lift-tools - reveal
 
 //taking a markdown file as input (you can use my ICT221 lecture as an example
 // manually add a slide/page for an interactive quiz and maybe another one for a YouTube video)
@@ -9,7 +9,7 @@
 
 import UTIL_fileio from '../util/util-fileio.js';
 
-export default class LIFTS_MD2html {
+export default class LIFTS_Reveal {
   constructor() {
 
     this.dir_media = APP.directory.media;
@@ -19,11 +19,11 @@ export default class LIFTS_MD2html {
 
   /////  init
   init() {
-    this.init_converter();
+    this.init_reveal();
 
     this.fileio = new UTIL_fileio(this);
 
-    console.log('LIFTS-md2html (init)  ' + 'v:' + APP.properties.version + '  dir:'+this.dir_media)
+    console.log('LIFTS-reveal (init)  ' + 'v:' + APP.properties.version + '  dir:'+this.dir_media)
 
   }
 
@@ -35,37 +35,39 @@ export default class LIFTS_MD2html {
         if (op=='fileio_text')
           this.convert_text_md(arg);
   }
-//////////////////////////////////showdown
-  ///  global settings for showdown
-  init_converter() {
-      this.converter2HTML = new showdown.Converter();
+//////////////////////////////////reveal
+
+  init_reveal() {
+
+
+
   }
 
   convert_text_md(text) {
 
-      let html = this.md2html(text);
-      console.log('LIFTS-md2html (html)  ' + html)
+      let html = this.reveal(text);
+      console.log('LIFTS-reveal (html)  ' + html)
   }
 
 //////////////////////////////////unit tests
   test() {
-    console.log('LIFTS-md2html (tests)  ' + 'v:' + APP.properties.version + '  dir:'+this.dir_media)
-    this.test_md2html();
+    console.log('LIFTS-reveal (tests)  ' + 'v:' + APP.properties.version + '  dir:'+this.dir_media)
+    this.test_reveal();
   }
 
-  test_md2html() {
+  test_reveal() {
     var test = this.mdfile2html('ict221','ICT221_Week01_Java_Intro')
-    console.log('LIFTS-md2html (test-md2html)  ' + test)
+    console.log('LIFTS-reveal (test-reveal)  ' + test)
   }
 
-  ////////////////////////////////////md2html
+  ////////////////////////////////////reveal
 
   mdfile2html(directory,filename) {
     var fn = this.media_file_name_get(directory,filename);
     this.media_file_read(fn);
   }
 
-  md2html(mdtext) {
+  reveal(mdtext) {
     return this.converter2HTML.makeHtml(mdtext);
   }
 
