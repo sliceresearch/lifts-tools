@@ -45,5 +45,11 @@ export default class APP_Properties {
 
     APP.running = false;
 
+    /////
+
   }
 }
+
+//window.APP.log = function() {
+
+//};

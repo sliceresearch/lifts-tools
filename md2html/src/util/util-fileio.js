@@ -7,20 +7,22 @@ export default class UTIL_fileio {
   }
 
   read(filename) {
-    console.log('fileio (get) ',filename)
+    //console.log('fileio (get) ',filename)
     this.urlLoader = new UTIL_FileURLLoader(this,filename);
   }
 
   cycle() {
-    this.urlLoader.checkURLReady();
+    if (this.urlLoader!=undefined)
+        this.urlLoader.checkURLReady();
 
   }
 
 
   ////////////////////////////////////////////URL loader callbacks
   setURLMedia() {
-  //  console.log('seturl',this.urlLoader.URLtext);
+  //  //console.log('seturl',this.urlLoader.URLtext);
     this.callback.call('fileio_text',this.urlLoader.URLtext);
+
   }
 
   checkURLMedia() {
@@ -34,9 +36,9 @@ export default class UTIL_fileio {
 
 /*
   async load(filename) {
-      console.log('fileio (await) ',filename)
+      //console.log('fileio (await) ',filename)
       const readme = await this.promiseReader(filename);
-      console.log(readme);
+      //console.log(readme);
   }
 
 
@@ -47,7 +49,7 @@ export default class UTIL_fileio {
           reject(err);
         }
         resolve(data);
-        console.log(data)
+        //console.log(data)
       });
     });
   }*/
@@ -61,7 +63,7 @@ export default class UTIL_fileio {
 
                 const file = inputFile.files[0];
 
-              console.log('promiseReader',temporaryFileReader,file);
+              //console.log('promiseReader',temporaryFileReader,file);
 
                 return new Promise((resolve, reject) => {
                   temporaryFileReader.onerror = () => {
@@ -71,13 +73,13 @@ export default class UTIL_fileio {
 
                   temporaryFileReader.onload = () => {
                     resolve(temporaryFileReader.result);
-                    console.log(temporaryFileReader.result);
+                    //console.log(temporaryFileReader.result);
                   };
 
 
-                      console.log('onchange');
+                      //console.log('onchange');
 
-                      console.log('onchange',file);
+                      //console.log('onchange',file);
                     temporaryFileReader.readAsDataURL(file);
 
                 //  temporaryFileReader.readAsText(inputFile);
@@ -92,10 +94,10 @@ export default class UTIL_fileio {
 
       try {
         const fileContents = await this.readTextFile(file);
-        console.log(fileContents);
+        //console.log(fileContents);
       //  fileContentDiv.innerHTML = fileContents
       } catch (e) {
-          console.log(e.message);
+          //console.log(e.message);
       //  fileContentDiv.innerHTML = e.message
       }
 

@@ -17,6 +17,9 @@ export default class UTIL_FileURLLoader {
     this.URLTimer = Date.now();
   }
 
+  log() {
+
+  }
   //////////////////////////////////URL
 
   checkURLReady() {
@@ -52,7 +55,7 @@ export default class UTIL_FileURLLoader {
   }
 
   checkURL() {
-    console.log(
+    this.log(
       'util-fileURL (checkurl):' + this.id + ' ' + this.URL
     );
 
@@ -63,12 +66,12 @@ export default class UTIL_FileURLLoader {
 
   checkURLCallback(status) {
     if (status == true) {
-      console.log(
+      this.log(
         'util-fileURL (checkurl-call-ok):' + this.id + ' ' + this.URL
       );
       this.setURL();
     } else {
-      console.log(
+      this.log(
         'util-fileURL (checkurl-call-timeout):' + this.id + ' ' + this.URL
       );
       this.setURLTimeout();
@@ -76,7 +79,7 @@ export default class UTIL_FileURLLoader {
   }
 
   checkURL2() {
-    console.log(
+    this.log(
       'util-fileURL (checkurl):' + this.id + ' ' + this.URL
     );
 
@@ -89,10 +92,10 @@ export default class UTIL_FileURLLoader {
   }
 
   setURL() {
-    console.log('util-fileURL (set):' + this.id + ' ' + this.URL);
+    this.log('util-fileURL (set):' + this.id + ' ' + this.URL);
 
     if (this.URL == '')
-      console.log(
+      this.log(
         'util-fileURL (set-null):' + this.id + ' ' + this.URL
       );
 
@@ -105,7 +108,7 @@ export default class UTIL_FileURLLoader {
   }
 
   checkMediaURL() {
-    console.log(
+    this.log(
       'util-fileURL (checkmedia):' + this.id + ' ' + this.URL
     );
 
@@ -118,7 +121,7 @@ export default class UTIL_FileURLLoader {
   }
 
   startURL() {
-    console.log(
+    this.log(
       'util-fileURL (startmedia):' + this.id + ' ' + this.URL
     );
 
@@ -132,7 +135,7 @@ export default class UTIL_FileURLLoader {
     this.URLTimeoutCount++;
     this.URLTimer = Date.now();
 
-    console.log(
+    this.log(
       'util-fileURL (timer):' + this.id + ' ' + this.URLTimeoutCount
     );
 
@@ -147,7 +150,7 @@ export default class UTIL_FileURLLoader {
     const elapsed = Date.now() - this.URLTimer;
     if (elapsed > this.URLTimeout) {
       this.URLTimer = 0;
-      console.log(
+      this.log(
         'util-fileURL (timeout):' + this.id + ' ' + elapsed
       );
       return true;
@@ -165,7 +168,7 @@ export default class UTIL_FileURLLoader {
 
       http.onreadystatechange = function() {
         if (http.readyState == 4) {
-          console.log(
+          _me.log(
             'autil: (exists-call):' +
               url +
               ' ' +
@@ -176,7 +179,7 @@ export default class UTIL_FileURLLoader {
           );
           if (http.status == 200 || http.status == 206) {
             _me.URLtext=http.responseText;
-           console.log('autil: (ok):' );
+           _me.log('autil: (ok):' );
             callback(true, index);
 
 
@@ -189,13 +192,13 @@ export default class UTIL_FileURLLoader {
 
       http.send(null);
     }
-    console.log('autil: (exists):' + url + ' ' + http.status);
+    this.log('autil: (exists):' + url + ' ' + http.status);
   }
 
   fileExistsCallback(status, obj) {
     //  var nobj = anetSystem.nodes[id];
 
-    console.log('autil: (exists-callback):' + obj + ' ' + status);
+  //  this.log('autil: (exists-callback):' + obj + ' ' + status);
 
     //  if (nobj != undefined) {
     obj.checkURLCallback(status);
@@ -207,10 +210,10 @@ export default class UTIL_FileURLLoader {
     http.open('HEAD', url, false);
     http.send(null);
 
-    console.log('autil: (exists-test):' + url + ' ' + http.status);
+    this.log('autil: (exists-test):' + url + ' ' + http.status);
 
     if (http.status == 404) {
-      console.log(
+      this.log(
         'autil: (exists-nup):' +
           url +
           ' ' +
@@ -222,7 +225,7 @@ export default class UTIL_FileURLLoader {
       return false;
     }
 
-    console.log(
+    this.log(
       'autil: (exists-yep):' +
         url +
         ' ' +

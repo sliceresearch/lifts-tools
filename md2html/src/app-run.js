@@ -51,12 +51,13 @@ export default class APP_run {
     let html_target = document.getElementById('lifts-html');
     //
     var makeIframe = document.createElement("iframe");
+    makeIframe.setAttribute("id", "lifts-reveal");
     makeIframe.setAttribute("src", "reveal.html");
     makeIframe.setAttribute("scrolling", "no");
-    makeIframe.style.border = "none";
+  //  makeIframe.style.border = "none";
 //    makeIframe.style.left =  "0px";
   //  makeIframe.style.top = "-70px";
-    makeIframe.style.position = "absolute";
+//    makeIframe.style.position = "absolute";
 
     console.log(makeIframe)
 
@@ -68,7 +69,7 @@ export default class APP_run {
 
 //////////////////////////////////unit tests
   test() {
-    this.md2html.test();
+  //  this.md2html.test();
 
   }
 
@@ -76,9 +77,14 @@ export default class APP_run {
 
       console.log('LIFTS-tools (test-run)  ' + 'v:' + APP.properties.version)
         this.setPresentation();
-
+        this.md2html.test();
   }
 
+  test_html() {
+
+    return '<div class="reveal"><div class="slides">	<section>Slide 1</section>	<section>Slide 2</section>	</div></div>'
+
+  }
 //  target = document.getElementById('targetDiv'),
 //    converter = new showdown.Converter(),
 //    html = converter.makeHtml(text);
