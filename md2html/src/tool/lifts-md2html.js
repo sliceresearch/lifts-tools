@@ -38,6 +38,11 @@ export default class LIFTS_MD2html {
   }
 
   publish(arg) {
+
+
+    app.codemirror_value(arg);
+
+
     let html = this.convert_text_md(arg);
     let html_target = document.getElementById('lifts-reveal');
 
@@ -52,7 +57,7 @@ export default class LIFTS_MD2html {
   //  html_tag.appendChild(html);
      html_tag.innerHTML=html;
 
-     console.log(html_tag,html)
+     console.log('pub:',html_tag)
   }
 
 //////////////////////////////////showdown

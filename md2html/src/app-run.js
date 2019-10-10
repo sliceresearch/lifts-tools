@@ -7,6 +7,8 @@
 
 //integrating some external interactive components, such as an MS Forms quiz.
 
+import CodeMirror from 'codemirror';
+
 import APP_Properties from './app-properties.js';
 
 import LIFTS_md2html from './tool/lifts-md2html.js';
@@ -26,7 +28,11 @@ export default class APP_run {
     this.md2html = new LIFTS_md2html();
     this.md2html.init();
 
+    this.codemirror_init();
+
+
     this.run();
+
 
     APP.running = true;
 
@@ -46,6 +52,24 @@ export default class APP_run {
 
 //////////////////////////////////convert
 
+  codemirror_init() {
+
+    let html_element = document.getElementById('lifts-markdown');
+
+    this.codemirror = CodeMirror(html_element, {
+          value: "\n",
+          mode:  "javascript"
+      });
+
+  //    console.log(myCodeMirror,html_element,document.body)
+
+  }
+
+
+  codemirror_value(v) {
+    this.codemirror.setValue(v)
+  }
+
   setPresentation(html) {
 
     let html_target = document.getElementById('lifts-html');
@@ -54,10 +78,16 @@ export default class APP_run {
     makeIframe.setAttribute("id", "lifts-reveal");
     makeIframe.setAttribute("src", "reveal.html");
     makeIframe.setAttribute("scrolling", "no");
-  //  makeIframe.style.border = "none";
-//    makeIframe.style.left =  "0px";
-  //  makeIframe.style.top = "-70px";
-//    makeIframe.style.position = "absolute";
+     makeIframe.style.border = "0";
+     makeIframe.style.left =  "5";
+    makeIframe.style.top = "0";
+      makeIframe.style.right = "0";
+       makeIframe.style.bottom = "0";
+          makeIframe.style.width = "100%";
+            makeIframe.style.height = "100%";
+    makeIframe.style.position = "absolute";
+
+
 
     console.log(makeIframe)
 
@@ -69,6 +99,7 @@ export default class APP_run {
 
 //////////////////////////////////unit tests
   test() {
+    //  this.codemirror();
   //  this.md2html.test();
 
   }
@@ -76,8 +107,11 @@ export default class APP_run {
   test_run() {
 
       console.log('LIFTS-tools (test-run)  ' + 'v:' + APP.properties.version)
+
         this.setPresentation();
         this.md2html.test();
+
+
   }
 
   test_html() {
