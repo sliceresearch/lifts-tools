@@ -15,6 +15,8 @@ export default class LIFTS_MD2html {
   constructor() {
 
     this.dir_media = APP.directory.media;
+    this.markdown="";
+    this.html="";
 
   }
 
@@ -38,27 +40,13 @@ export default class LIFTS_MD2html {
   }
 
   publish(arg) {
-
-
-    app.codemirror_value(arg);
-
-
+    this.markdown=arg;
     let html = this.convert_text_md(arg);
-    let html_target = document.getElementById('lifts-reveal');
+    this.html = this.html_parse(html);
 
-    var html_target_inner = (html_target.contentDocument)
-               ? html_target.contentDocument
-               : html_target.contentWindow.document;
-
-    let html_tag = html_target_inner.getElementById('lifts-slides');
-    html = this.html_parse(html);
-
-
-  //  html_tag.appendChild(html);
-     html_tag.innerHTML=html;
-
-     console.log('pub:',html_tag)
+    app.presentation_update();
   }
+
 
 //////////////////////////////////showdown
   ///  global settings for showdown

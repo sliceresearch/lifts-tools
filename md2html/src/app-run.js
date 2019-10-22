@@ -18,7 +18,6 @@ export default class APP_run {
 
     this.properties = new APP_Properties();
 
-
     console.log(APP)
 
   }
@@ -41,7 +40,7 @@ export default class APP_run {
   run() {
     setInterval(function() {
     step();
-    }, 1000 / 29.97);
+  }, 5000 / 29.97);
   }
 
   cycle() {
@@ -50,7 +49,7 @@ export default class APP_run {
 
   }
 
-//////////////////////////////////convert
+  //////////////////////////////////codemirror
 
   codemirror_init() {
 
@@ -70,33 +69,74 @@ export default class APP_run {
     this.codemirror.setValue(v)
   }
 
-  setPresentation(html) {
+  //////////////////////////////////reveal
 
-    let html_target = document.getElementById('lifts-html');
-    //
-    var makeIframe = document.createElement("iframe");
-    makeIframe.setAttribute("id", "lifts-reveal");
-    makeIframe.setAttribute("src", "reveal.html");
-    makeIframe.setAttribute("scrolling", "no");
-     makeIframe.style.border = "0";
-     makeIframe.style.left =  "5";
-    makeIframe.style.top = "0";
-      makeIframe.style.right = "0";
-       makeIframe.style.bottom = "0";
-          makeIframe.style.width = "100%";
-            makeIframe.style.height = "100%";
-    makeIframe.style.position = "absolute";
+  presentation_set() {
+    this.presentation_frame_set()
+    this.presentation_target_set()
 
-
-
-    console.log(makeIframe)
-
-    html_target.appendChild(makeIframe);
-
-  //  html_target.innerHTML = makeIframe.innerHTML
   }
 
+  presentation_update() {
+    this.presentation_frame_update()
+  //  document.getElementById('lifts-reveal').contentDocument.location.reload(true);
+  }
 
+  presentation_target_set() {
+    let html_target = document.getElementById('lifts-html');
+    html_target.appendChild(this.iframe_reveal);
+  }
+
+  presentation_frame_set() {
+
+    this.iframe_reveal = document.createElement("iframe");
+    this.iframe_reveal.setAttribute("id", "lifts-reveal");
+    this.iframe_reveal.setAttribute("src", "reveal.html");
+    this.iframe_reveal.setAttribute("scrolling", "no");
+    this.iframe_reveal.style.border = "0";
+    this.iframe_reveal.style.left =  "5";
+    this.iframe_reveal.style.top = "0";
+    this.iframe_reveal.style.right = "0";
+    this.iframe_reveal.style.bottom = "0";
+    this.iframe_reveal.style.width = "100%";
+    this.iframe_reveal.style.height = "100%";
+    this.iframe_reveal.style.position = "absolute";
+
+  }
+
+  presentation_frame_update() {
+
+      this.codemirror_value(this.md2html.markdown);
+
+        let html_target = document.getElementById('lifts-reveal');
+
+        var html_target_inner = (html_target.contentDocument)
+                   ? html_target.contentDocument
+                   : html_target.contentWindow.document;
+
+        let html_tag = html_target_inner.getElementById('lifts-slides');
+
+    //    let html_tag = this.iframe_reveal.getElementById('lifts-slides');
+
+        //  html_tag.innerHTML=	"<section>Slide 1</section><section>Slide 2</section>";
+         html_tag.innerHTML=this.md2html.html;
+         //html_target_inner.getElementById('lifts-slides').innerHTML=html;
+         console.log('pub:',html_target_inner,html_tag)
+
+    }
+
+    reveal_init() {
+
+      Reveal.initialize({
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true }
+        ]
+      });
+
+    }
 //////////////////////////////////unit tests
   test() {
     //  this.codemirror();
@@ -108,9 +148,9 @@ export default class APP_run {
 
       console.log('LIFTS-tools (test-run)  ' + 'v:' + APP.properties.version)
 
-        this.setPresentation();
+        this.presentation_set();
         this.md2html.test();
-
+      //  this.setPresentationTarget();
 
   }
 
