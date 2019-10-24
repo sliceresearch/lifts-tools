@@ -55,6 +55,15 @@
 	</head>
 	<body>
 
+		<div id="hidden" style="display:none;">
+					 <div id="header">
+							 <div class="header-left">test header left</div>
+							 <div class="header-right">test header right</div>
+							 <div class="footer-left">test footer left</div>
+							 <div class="footer-right">test footer right</div>
+					 </div>
+		</div>
+
 	<div class="reveal">
 				<div id="lifts-slides" class="slides">
 						<section>Slide Default</section>
@@ -76,6 +85,14 @@
 				]
 			});
 		</script>
-		  
+		   <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+		<script type="text/javascript">
+					 var header = $('#header').html();
+					 if ( window.location.search.match( /print-pdf/gi ) ) {
+							 $('.slides > section').prepend(header);
+					 } else {
+							 $('.slides').prepend(header);
+					 }
+			 </script>
 	</body>
 </html>

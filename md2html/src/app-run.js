@@ -13,6 +13,8 @@ import APP_Properties from './app-properties.js';
 
 import LIFTS_md2html from './tool/lifts-md2html.js';
 
+//import * as $ from 'jquery';
+
 export default class APP_run {
   constructor() {
 
@@ -124,6 +126,12 @@ export default class APP_run {
          console.log('pub:',html_target_inner,html_tag)
 
     }
+
+    reveal_footer() {
+
+
+    }
+
 
     reveal_init() {
 
