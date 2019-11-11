@@ -1,5 +1,5 @@
 
-MD2HTML Demo - October 2019
+MD2HTML Demo - prototype - late 2019
 
 Prototype for generating reveal.js presentation from markdown file (converted from PPT)
 
